@@ -18,7 +18,7 @@ namespace FigureAreaCalculatorTests
             invalidTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(1, 2, 3);
             rectangularTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(3, 4, 5);
             equilateralTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(6, 6, 6);
-            rectangularInvalidTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(-3, -4, -5);          
+            rectangularInvalidTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(-3, -4, -5);
         }
 
         // ќжидаема€ площадь вычисл€лась с пи равным 3.14
@@ -44,7 +44,7 @@ namespace FigureAreaCalculatorTests
 
             Assert.IsFalse(invalidTriangle.isValid);
             Assert.IsTrue(rectangularTriangle.isValid);
-            Assert.IsTrue(equilateralTriangle.isValid);         
+            Assert.IsTrue(equilateralTriangle.isValid);
             Assert.IsFalse(rectangularInvalidTriangle.isValid);
         }
 

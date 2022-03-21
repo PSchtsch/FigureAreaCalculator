@@ -14,7 +14,7 @@ namespace FigureAreaCalculator.Figures
 
         public bool isValid => IsTringleValid();
 
-        public bool IsTringleValid()
+        private bool IsTringleValid()
         {
             var isValid = (ASide + BSide > CSide) && (BSide + CSide > ASide) && (CSide + ASide > BSide);
             return isValid;
@@ -36,7 +36,7 @@ namespace FigureAreaCalculator.Figures
             return isTriangleRectangular;
         }
 
-        public Triangle(double aSide, double bSide, double cSide)
+        internal Triangle(double aSide, double bSide, double cSide)
         {
             ASide = aSide;
             BSide = bSide;

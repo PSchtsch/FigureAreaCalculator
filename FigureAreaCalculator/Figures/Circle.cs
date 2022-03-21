@@ -10,7 +10,7 @@ namespace FigureAreaCalculator.Figures
     {
         public double Radius { get; }
 
-        public Circle(double radius)
+        internal Circle(double radius)
         {
             Radius = radius;
         }
