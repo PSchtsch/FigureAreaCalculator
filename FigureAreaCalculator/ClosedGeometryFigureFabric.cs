@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FigureAreaCalculator.Figures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,12 @@ namespace FigureAreaCalculator
     {
         public static IClosedGeometryFigure CreateCircle(double radius)
         {
-            throw new NotImplementedException();
+            return new Circle(radius);
         }
 
         public static IClosedGeometryFigure CreareTriangle(double aSide, double bSide, double cSide)
         {
-            throw new NotImplementedException();
+            return new Triangle(aSide, bSide, cSide);
         }
     }
 }

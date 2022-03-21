@@ -1,88 +1,83 @@
 using NUnit.Framework;
 using FigureAreaCalculator;
 using System.Collections.Generic;
+using FigureAreaCalculator.Figures;
 
 namespace FigureAreaCalculatorTests
 {
     public class Tests
     {
-        private IClosedGeometryFigure circle;
-        private IClosedGeometryFigure zeroCircle;
-        private IClosedGeometryFigure negativeCircle;
-
-        private IClosedGeometryFigure invalidTriangle;
-        private IClosedGeometryFigure rectangularTriangle;
-        private IClosedGeometryFigure negativeInvalidTriangle;
-        private IClosedGeometryFigure rectangularInvalidTriangle;
-
-        private List<IClosedGeometryFigure> polygons;
-
+        private IClosedGeometryFigure invalidTriangleFigure;
+        private IClosedGeometryFigure rectangularTriangleFigure;
+        private IClosedGeometryFigure equilateralTriangleFigure;
+        private IClosedGeometryFigure rectangularInvalidTriangleFigure;
 
         [SetUp]
         public void Setup()
         {
-            circle = ClosedGeometryFigureFabric.CreateCircle(42);
-            zeroCircle = ClosedGeometryFigureFabric.CreateCircle(0);
-            negativeCircle = ClosedGeometryFigureFabric.CreateCircle(-69);
-
-            invalidTriangle = ClosedGeometryFigureFabric.CreareTriangle(1, 2, 3);
-            rectangularTriangle = ClosedGeometryFigureFabric.CreareTriangle(3, 4, 5);
-            negativeInvalidTriangle = ClosedGeometryFigureFabric.CreareTriangle(-4.2, 0, -6.9);
-            rectangularInvalidTriangle = ClosedGeometryFigureFabric.CreareTriangle(-3, -4, -5);
-
-            polygons = new List<IClosedGeometryFigure>
-            {
-                circle,
-                zeroCircle,
-                negativeCircle,
-
-                invalidTriangle,
-                rectangularTriangle,
-                negativeInvalidTriangle,
-                rectangularInvalidTriangle
-            };
+            invalidTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(1, 2, 3);
+            rectangularTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(3, 4, 5);
+            equilateralTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(6, 6, 6);
+            rectangularInvalidTriangleFigure = ClosedGeometryFigureFabric.CreareTriangle(-3, -4, -5);          
         }
 
-        [Test]
-        public void CircleArea()
+        // Ожидаемая площадь вычислялась с пи равным 3.14
+        [TestCase(0, 0)]
+        [TestCase(42, 5538.96)]
+        [TestCase(-69, 14949.54)]
+        public void CircleArea(double radius, double expectedArea)
         {
-            Assert.Pass();
-        }
+            IClosedGeometryFigure someCircle = ClosedGeometryFigureFabric.CreateCircle(radius);
+            var actualArea = someCircle.CalculateArea();
 
-        [Test]
-        public void ZeroCircleArea()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
-        public void NegativeCircleArea()
-        {
-            Assert.Pass();
+            double tolerance = 10;
+            Assert.AreEqual(expectedArea, actualArea, tolerance);
         }
 
         [Test]
         public void IsTriangleValid()
         {
-            Assert.Pass();
+            var invalidTriangle = (Triangle)invalidTriangleFigure;
+            var rectangularTriangle = (Triangle)rectangularTriangleFigure;
+            var equilateralTriangle = (Triangle)equilateralTriangleFigure;
+            var rectangularInvalidTriangle = (Triangle)rectangularInvalidTriangleFigure;
+
+            Assert.IsFalse(invalidTriangle.isValid);
+            Assert.IsTrue(rectangularTriangle.isValid);
+            Assert.IsTrue(equilateralTriangle.isValid);         
+            Assert.IsFalse(rectangularInvalidTriangle.isValid);
         }
 
         [Test]
         public void IsTriangleRectangular()
         {
-            Assert.Pass();
+            var invalidTriangle = (Triangle)invalidTriangleFigure;
+            var rectangularTriangle = (Triangle)rectangularTriangleFigure;
+            var equilateralTriangle = (Triangle)equilateralTriangleFigure;
+            var rectangularInvalidTriangle = (Triangle)rectangularInvalidTriangleFigure;
+
+            Assert.IsFalse(invalidTriangle.IsRectangular);
+            Assert.IsTrue(rectangularTriangle.IsRectangular);
+            Assert.IsFalse(equilateralTriangle.IsRectangular);
+
+            // Я исхожу из мнения, что невалидный треугольник не может иметь какой-либо тип,
+            // потому что, фактически, это не существующий треугольник в условиях задания 
+            Assert.IsFalse(rectangularInvalidTriangle.IsRectangular);
         }
 
         [Test]
         public void TriangleArea()
         {
-            Assert.Pass();
-        }
+            var invalidTriangleArea = invalidTriangleFigure.CalculateArea();
+            var rectangularTriangleArea = rectangularTriangleFigure.CalculateArea();
+            var equilateralTriangleArea = equilateralTriangleFigure.CalculateArea();
+            var rectangularInvalidTriangleArea = rectangularInvalidTriangleFigure.CalculateArea();
 
-        [Test]
-        public void AllFiguresArea()
-        {
-            Assert.Pass();
+            double tolerance = 0.1;
+            Assert.AreEqual(invalidTriangleArea, 0);
+            Assert.AreEqual(equilateralTriangleArea, 15.59, tolerance);
+            Assert.AreEqual(rectangularTriangleArea, 6, tolerance);
+            Assert.AreEqual(rectangularInvalidTriangleArea, 0);
         }
     }
 }
