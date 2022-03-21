@@ -17,8 +17,8 @@ namespace FigureAreaCalculator.Figures
 
         public double CalculateArea()
         {
-            throw new NotImplementedException();
+            var area = Math.PI * Math.Pow(Radius, 2);
+            return area;
         }
-
     }
 }
