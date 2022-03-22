@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureAreaCalculator", "FigureAreaCalculator.csproj", "{D61CBF76-1867-4C80-855F-F24F95E079ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FigureAreaCalculator", "FigureAreaCalculator.csproj", "{D61CBF76-1867-4C80-855F-F24F95E079ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureAreaCalculatorTests", "..\FigureAreaCalculatorTests\FigureAreaCalculatorTests.csproj", "{F24153CA-B930-4532-B1BC-C320EA646A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FigureAreaCalculatorTests", "..\FigureAreaCalculatorTests\FigureAreaCalculatorTests.csproj", "{F24153CA-B930-4532-B1BC-C320EA646A09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9D3FC5E-B423-49E1-8E9E-D1BDEFD14F69}"
+	ProjectSection(SolutionItems) = preProject
+		SqlQuery_1.sql = SqlQuery_1.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
